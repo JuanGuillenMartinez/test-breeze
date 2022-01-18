@@ -15,7 +15,9 @@ class CreateLibroVentaTable extends Migration
     {
         Schema::create('libro_venta', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('libro_id')->constrained();
+            $table->unsignedBigInteger('libro_sucursal_id');
+
+            $table->foreign('libro_sucursal_id')->references('id')->on('libro_sucursal');
             $table->foreignId('venta_id')->constrained();
             $table->timestamps();
         });
